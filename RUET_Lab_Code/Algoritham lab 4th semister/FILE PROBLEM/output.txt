@@ -1,0 +1,2 @@
+ The sum  is: 15
+ The avarage of numbers are: 2
