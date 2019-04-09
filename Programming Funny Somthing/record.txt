@@ -1,0 +1,12 @@
+Player Name :Farhad
+Played Date:Tue Jan 30 22:55:43 2018
+Score:2
+___________________________________________________
+Player Name :Klj
+Played Date:Wed Jan 31 00:21:26 2018
+Score:1
+___________________________________________________
+Player Name :Farhad
+Played Date:Wed Jan 31 00:28:43 2018
+Score:15
+___________________________________________________

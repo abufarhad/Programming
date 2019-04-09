@@ -1,0 +1,43 @@
+Enter the number of player 
+Enter the information of 1  cricket number of player
+Enter player name
+Enter player id
+Enter player role:-
+Total run :-
+Total match :-
+Number of match:-
+player name:farhad
+player id:67
+The average of the player is: 300
+Enter the information of 2  cricket number of player
+Enter player name
+Enter player id
+Enter player role:-
+Total run :-
+Total match :-
+Number of match:-
+player name:jf
+player id:34
+The average of the player is: 250
+Best player is:-farhad
+Bat average=300
+Enter the information of 1 number football  player
+Enter player name
+Enter player id
+Enter player role:-
+Total match :-
+Total gole :-
+player name:ffff
+player id:87
+The average of the player is: 0.2
+Enter the information of 2 number football  player
+Enter player name
+Enter player id
+Enter player role:-
+Total match :-
+Total gole :-
+player name:hhhhh
+player id:765
+The average of the player is: 0.166667
+Best player is:-ffff
+Goal average=0.2
