@@ -1,40 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll                  long long
+#define scl(n)              scanf("%lld", &n)
+#define fr(i,n)             for (ll i=0;i<n;i++)
+#define fr1(i,n)            for(ll i=1;i<=n;i++)
+#define pfl(x)              printf("%lld\n",x)
+#define endl 	            "\n"
+#define pb                  push_back
+#define mx                  100000000
 
-ll int prime[1000000];
-bool  check[10000000];
-//ll int cmsum[10000007];
-ll int   sieve(ll int n)
+bool prime[mx];
+ll p[mx];
+void sieve()
 {
-    ll int z,x=1;
-    prime[0]=2;
-    check[1]=check[0]=true;
+    ll i,j;
+    prime[0]=prime[1]=1;
 
-
-    for(int i=3; i*i<=n; i+=2)
+    for(i=4;i<=mx;i+=2)prime[i]=1;
+    for(i=3;i<=sqrt(mx); i+=2)
     {
-        if(!check[i])
+        if(prime[i]==0)
         {
-            prime[x]=i;
-            x++;
-            for(int j=i*i; j<=n; j+=i)
-            {
-                check[j]=true;
-            }
-        }
-        z=i;
-    }
-    for(int j=4; j<=n; j+=2)
-    {
-        check[j]=true;
-
-    }
-    for(int j=z+1; j<=n; j++)
-    {
-        if(!check[j])
-        {
-            prime[x]=j;
-            x++;
+            for(j=i*i ; j<=mx; j+=2*j)prime[j]=1;
         }
     }
-    return  x;
+    p[0]=2;
+    ll k=1;
+    for(i=3;i<=mx;i++)
+    {
+        if(prime[i]==0)p[k]=i, k++;
+    }
 }
 
+int main()
+{
+    sieve();
+    ll m,n,t,b,c,d,i,j,k,x,y,z,l,q,r;
+    //fr(i, 20)cout<<p[i]<<" ";
+
+    cin>>t;
+
+    while(t--)
+    {
+        cin>>n;
+        cout<<p[n]<<endl;
+    }
+    return 0;
+}

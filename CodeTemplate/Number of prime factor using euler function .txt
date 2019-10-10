@@ -1,0 +1,30 @@
+##****How Many Factor Pairs Does a Given Number Have?***##
+
+Hi BJ,
+
+Well, it won't tell you there are 12 pairs since there are in fact 16
+(you left out 7,24 and 12,14 and their negatives), but here's the
+algorithm that will give the correct answer:
+
+Look at the exponents on the prime factors.  In your example, they are 
+3, 1 and 1:  168 = (2^3)(3^1)(7^1).
+
+Take all the exponents, add 1 to each, and multiply the numbers:
+
+(3 + 1)(1 + 1)(1 + 1) = 4*2*2 = 16
+
+There's the answer unless the number happens to be a perfect square in 
+which case you need to add 1.
+
+Here's why it works.  I'll just explain for your example, and you can 
+see why it'll always work.  Let's begin by making a list of all the 
+factors.  The factor will have some number of powers of 2 in it 
+between 0 and 3: (0, 1, 2 or 3).  Thus there are 3 + 1 = 4 choices for 
+the number of factors of 2.  Similarly, there are 0 or 1 factors of 3 
+and 0 or 1 factors of 7.
+
+Once you choose the number of each of the prime factors in your
+divisor, you know what that divisor is.  There are 4 ways to choose
+the number of factors of 2; 2 ways to choose the number of factors of
+3 and 2 ways to choose the number of factors of 7, so there are 4*2*2
+= 16 factors.

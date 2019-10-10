@@ -8,9 +8,8 @@ int bfs(int a1,int b1, int a2, int b2)
 {
     int moves[10][10], visit[10][10], m,n;
 
-
     pair<int,int>p;
-    queue<pair<int,int> > q;
+    queue< pair<int,int> > q;
     memset(moves, 0, sizeof moves);
     memset(visit, 0, sizeof visit);
 
@@ -23,8 +22,8 @@ int bfs(int a1,int b1, int a2, int b2)
     {
         p=q.front();
         q.pop();
-        if(p.first==a2&&p.second==b2)
-            return moves[a2][b2];
+        if(p.first==a2&&p.second==b2) return moves[a2][b2];
+
         for(int i=1; i<=8; i++)
         {
             m=p.first+x[i];
@@ -33,8 +32,7 @@ int bfs(int a1,int b1, int a2, int b2)
             else
             {
                 visit[m][n]=1 ;
-                moves[m][n]=moves
-                            [p.first][p.second]+1;
+                moves[m][n]=moves[p.first][p.second]+1;
                 q.push(make_pair(m,n));
             }
         }

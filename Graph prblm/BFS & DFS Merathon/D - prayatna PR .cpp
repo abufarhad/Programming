@@ -9,8 +9,7 @@ void dfs(int a)
     for(int i=0; i<node[a].size(); i++)
     {
         int u=visited[node[a][i]];
-        if(u==false)
-            dfs(node[a][i]);
+        if(u==false)  dfs(node[a][i]);
     }
 }
 int main()

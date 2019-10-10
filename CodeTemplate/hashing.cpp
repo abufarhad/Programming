@@ -18,8 +18,10 @@ using namespace std;
 
 ll bigmod(ll b,ll p,ll m)
 {
-    if(p==0) return 1;
-    if(p==1) return b%m;
+    if(p==0)
+        return 1;
+    if(p==1)
+        return b%m;
     if(p%2)
     {
         return (bigmod(b,p-1,m)*b)%m;
@@ -47,15 +49,66 @@ valuesOfExEU extendedEuclid(ll a,ll b)
     temp.y=t-temp.y*(a/b);
     return temp;
 }
+
 ll modInverse(ll n,ll mod)
 {
     valuesOfExEU ans=extendedEuclid(n,mod);
     return (ans.x+mod)%mod;
 }
+
 char data[1000005];
 char pattern[1000005];
 ll inverse[1000001];
 ll prefix[1000005];
+
+
 int main()
 {
-    //freopen("input.txt","r",stdin); //freopen("output.txt","w",stdout); int caseno=1; ll p=100184533, mod=2367362131; int test; sci(test); ll curr=1; for(int i=0;i<=1000000;i++) { inverse[i]=modInverse(curr,mod); curr=(curr*p)%mod; } while(test--) { scanf(" %s",data); scanf(" %s",pattern); //printf("%s %s\n",data,pattern ); int n=strlen(data); ll power=1; for(int i=1;i<=n;i++) { power=(power*p)%mod; //cout<<power<<endl; prefix[i]=(prefix[i-1]+(data[i-1]*power))%mod; //cout<<prefix[i]<<endl; } int m=strlen(pattern); power=1; ll val=0; for(int i=1;i<=m;i++) { power=(power*p)%mod; val=(val+(pattern[i-1]*power))%mod; } int l=n-m+1; int ans=0; for(int i=1;i<=l;i++) { ll curr=prefix[i+m-1]-prefix[i-1]; curr=((curr*inverse[i-1])%mod+mod)%mod; //   cout<<val<<' '<<curr<<endl; if(curr==val) ans++; } pfc(caseno); printf("%d\n", ans); } return 0; }
+    //freopen("input.txt","r",stdin); //freopen("output.txt","w",stdout);
+    int caseno=1;
+    ll p=100184533, mod=2367362131;
+    int test;
+    sci(test);
+    ll curr=1;
+    for(int i=0; i<=1000000; i++)
+    {
+        inverse[i]=modInverse(curr,mod);
+        curr=(curr*p)%mod;
+    }
+    while(test--)
+    {
+        scanf(" %s",data);
+        scanf(" %s",pattern);
+        printf("%s %s\n",data,pattern );
+        int n=strlen(data);
+        ll power=1;
+        for(int i=1; i<=n; i++)
+        {
+            power=(power*p)%mod;
+            cout<<power<<endl;
+            prefix[i]=(prefix[i-1]+(data[i-1]*power))%mod;
+            cout<<prefix[i]<<endl;
+        }
+        int m=strlen(pattern);
+        power=1;
+        ll val=0;
+        for(int i=1; i<=m; i++)
+        {
+            power=(power*p)%mod;
+            val=(val+(pattern[i-1]*power))%mod;
+        }
+        int l=n-m+1;
+        int ans=0;
+        for(int i=1; i<=l; i++)
+        {
+            ll curr=prefix[i+m-1]-prefix[i-1];
+            curr=((curr*inverse[i-1])%mod+mod)%mod;
+            cout<<val<<' '<<curr<<endl;
+            if(curr==val)
+                ans++;
+        }
+        pfc(caseno);
+        printf("%d\n", ans);
+    }
+    return 0;
+}

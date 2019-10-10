@@ -33,7 +33,6 @@ int lis(int a[],int n)
 
 int main()
 {
-
     int n,k,l,i,t;
     cin>>t;
     while(t--)

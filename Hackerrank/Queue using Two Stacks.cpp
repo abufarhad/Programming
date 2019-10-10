@@ -78,7 +78,8 @@ int main()
     scl(t);
     queue<ll>q;
 
-while(t--){
+    while(t--)
+    {
         cin>>n;
         if(n==1)
         {
@@ -95,7 +96,7 @@ while(t--){
         }
     }
 
-return 0;
+    return 0;
 }
 
 

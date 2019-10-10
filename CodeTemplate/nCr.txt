@@ -1,0 +1,7 @@
+ncr(i64 n,i64 r)
+{
+if(n==r)return 1;
+if(r==1)return n;
+if(dp[n][r]!=-1)return dp[n][r];
+return dp[n][r]=ncr(n-1,r)+ncr(n-1,r-1);
+}

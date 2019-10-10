@@ -1,235 +1,144 @@
-//#include<bits/stdc++.h>
-//#include<stdio.h>
-//using namespace std;
-//
-//#define ll long long
-//
-//#define sci(x) scanf("%d",&x)
-//#define scl(x) scanf("%lld",&x)
-//#define scd(x) scanf("%lf",&x)
-//#define scc(x) scanf("%[^\n]s",x); // For charecter string input , It will  read all charecter untill Enter new line .
-//
-//
-//
-//
-//
-////ll bfs(char a[n][n])
-////{
-//
-//
-//   class item
-//    {
-//    public:
-//        int r;
-//        int c;
-//        int dist;
-//        item( ll p, ll q, ll d)
-//            : r(p), c(q), dist(d)
-//        {
-//        }
-//    };
-//
-//int main()
-//{
-//    ll i,j;
-//    ll x2,y2,x,y,d;
-//    ll n,m;
-//
-//    scl(n);
-//
-//    char a[n][n];
-//
-//
-//    for(i=0; i<n; i++)
-//    {
-//        for(j=0; j<n; j++)
-//        {
-//            cin>>a[i][j];
-//        }
-//    }
-//
-//    cin>>x>>y>>x2>>y2;
-//
-//
-//
-//    item src(0,0,0);
-//    bool visited[n][m];
-//
-//    for(ll i=0; i<n; i++)
-//    {
-//        for(ll j=0; j<n; j++)
-//        {
-//            if(a[i][j]=='x') visited[i][j]=true;
-//            else visited[i][j]=false;
-//
-//            if(a[i][j]==a[x][y])
-//            {
-//                src.r=i;
-//                src.c=j;
-//            }
-//        }
-//    }
-//
-//    queue<item>q;
-//    q.push(src);
-//
-//    visited[src.r][src.c]=true;
-//
-//    while(!q.empty())
-//    {
-//        item p=q.front();
-//        q.pop();
-//
-//        if(a[p.r][p.c]==a[x2][y2])
-//            cout<<p.dist<<endl;
-//
-//        /// moving up
-//        if(p.r-1>=0 && visited[p.r-1][p.c]==false)
-//        {
-//            q.push(item(p.r-1, p.c,p.dist+1) );
-//            visited[p.r-1][p.c]=true;
-//        }
-//
-//        /// moving down
-//        if(p.r+1<n && visited[p.r+1][p.c]==false)
-//        {
-//            q.push(item(p.r+1, p.c,p.dist+1) );
-//            visited[p.r+1][p.c]=true;
-//        }
-//
-//        /// moving left
-//        if(p.c-1>=0 && visited[p.r][p.c-1]==false)
-//        {
-//            q.push(item(p.r, p.c-1,p.dist+1) );
-//            visited[p.r][p.c-1]=true;
-//        }
-//
-//        /// moving right
-//        if(p.c+1<n && visited[p.r][p.c+1]==false)
-//        {
-//            q.push(item(p.r, p.c+1,p.dist+1) );
-//            visited[p.r][p.c+1]=true;
-//        }
-//    }
-//
-//
-////   cout<<bfs(a)<<endl;
-//return 0;
-//
-//}
-//
-
-
-
-// C++ Code implementation for above problem
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
+#include<stdio.h>
 using namespace std;
 
-#define N 4
-#define M 4
 
-// QItem for current location and distance
-// from source location
-class QItem {
-public:
-    int row;
-    int col;
-    int dist;
-    QItem(int x, int y, int w)
-        : row(x), col(y), dist(w)
-    {
-    }
+#define ll                  long long
+#define scl(n)              scanf("%lld", &n)
+#define fr(i,n)             for (ll i=0;i<n;i++)
+#define fr1(i,n)            for(ll i=1;i<=n;i++)
+#define pfl(x)              printf("%lld\n",x)
+#define endl 	            "\n"
+#define pb                  push_back
+#define asort(a)            sort(a,a+n)
+#define dsort(a)            sort(a,a+n,greater<int>())
+#define vasort(v)         sort(v.begin(), v.end());
+#define vdsort(v)         sort(v.begin(), v.end(),greater<int>());
+#define pn                  printf("\n")
+#define md                  10000007
+#define debug               printf("I am here\n")
+#define ps                  printf(" ")
+#define l(s)                      s.size()
+#define tcas(i,t)             for(ll i=1;i<=t;i++)
+#define pcas(i)                printf("Case %lld: ",i)
+
+static const int FREE = 0x1;
+static const int BLOCKED = 0x02;
+static const int FLAGGED = 0x8000;
+
+struct Qitem
+{
+    int x, y;
+    Qitem(int _x, int _y) : x(_x), y(_y)
+    {}
 };
 
-
-
-// Driver code
 int main()
 {
+    int n;
+    cin >> n;
+    int grid[n][n];
+    char sym;
 
-
-    int  i,j;
-    int x2,y2,x,y,d, n,m;
-
-    cin>>n;
-    char grid[n][n];
-
-
-    for(i=0; i<n; i++)
+    fr(i,n)fr(j,n)
     {
-        for(j=0; j<n; j++)
-        {
-            cin>>grid[i][j];
-        }
+        cin >> sym;
+        grid[j][i] = sym == '.' ? FREE : BLOCKED;
     }
 
-    cin>>x>>y>>x2>>y2;
+    int start_x, start_y, finish_x, finish_y;
+    cin >> start_y >> start_x >> finish_y >> finish_x;
 
-    QItem source(x, y, 0);
+    if (start_x == finish_x && start_y == finish_y)return 0;
 
-    // To keep track of visited QItems. Marking
-    // blocked cells as visited.
-    bool visited[n][n];
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++)
+    // steps queue
+    queue<Qitem> path;
+    int steps = -1;
+    path.push(Qitem(start_x, start_y));
+
+    grid[start_x][start_y] = FLAGGED;
+    int levels = 1;
+    bool found = false;
+
+    while (!found)
+    {
+        for (int i=0; i<levels; i++)
         {
-            if (grid[i][j] == 'x')
-                visited[i][j] = true;
-            else
-                visited[i][j] = false;
+            Qitem pos = path.front();
+            path.pop();
 
-            // Finding source
-            if (grid[i][j] == grid[x][y])
+            if (pos.x == finish_x && pos.y == finish_y)
             {
-               source.row = i;
-               source.col = j;
+                found = true;
+                break;
+            }
+
+            // try steps in all directions we haven't tried yet
+            int shift = pos.y - 1;
+
+            // up
+            while (shift >= 0)
+            {
+                if (grid[pos.x][shift] == FREE)
+                {
+                    grid[pos.x][shift] = FLAGGED;
+                    path.push(Qitem(pos.x, shift));
+
+                }
+                else if (grid[pos.x][shift] == BLOCKED)
+                    break;
+                shift--;
+            }
+
+
+            // down
+            shift = pos.y + 1;
+            while (shift < n)
+            {
+                if (grid[pos.x][shift] == FREE)
+                {
+                    grid[pos.x][shift] = FLAGGED;
+                    path.push(Qitem(pos.x, shift));
+                }
+                else if (grid[pos.x][shift] == BLOCKED)
+                    break;
+                shift++;
+            }
+
+            // left
+            shift = pos.x - 1;
+            while (shift >= 0)
+            {
+                if (grid[shift][pos.y] == FREE)
+                {
+                    grid[shift][pos.y] = FLAGGED;
+                    path.push(Qitem(shift, pos.y));
+                }
+                else if (grid[shift][pos.y] == BLOCKED)
+                    break;
+                shift--;
+            }
+
+            // right
+            shift = pos.x + 1;
+            while (shift < n)
+            {
+                if (grid[shift][pos.y] == FREE)
+                {
+                    grid[shift][pos.y] = FLAGGED;
+                    path.push(Qitem(shift, pos.y));
+                }
+                else if (grid[shift][pos.y] == BLOCKED)
+                    break;
+                shift++;
             }
         }
+
+        levels = path.size();
+        steps++;
     }
 
-     // applying BFS on matrix cells starting from source
-    queue<QItem> q;
-    q.push(source);
-    visited[source.row][source.col] = true;
-
-    while (!q.empty()) {
-        QItem p = q.front();
-        q.pop();
-
-        // Destination found;
-        if (grid[p.row][p.col] == grid[x2][y2]){
-            cout<< "p "<<p.dist;}
-
-        // moving up
-        if (p.row - 1 >= 0 &&
-            visited[p.row - 1][p.col] == false) {
-            q.push(QItem(p.row - 1, p.col, p.dist + 1));
-            visited[p.row - 1][p.col] = true;
-        }
-
-        // moving down
-        if (p.row + 1 < n &&
-            visited[p.row + 1][p.col] == false) {
-            q.push(QItem(p.row + 1, p.col, p.dist + 1));
-            visited[p.row + 1][p.col] = true;
-        }
-
-        // moving left
-        if (p.col - 1 >= 0 &&
-            visited[p.row][p.col - 1] == false) {
-            q.push(QItem(p.row, p.col - 1, p.dist + 1));
-            visited[p.row][p.col - 1] = true;
-        }
-
-         // moving right
-        if (p.col + 1 < n &&
-            visited[p.row][p.col + 1] == false) {
-            q.push(QItem(p.row, p.col + 1, p.dist + 1));
-            visited[p.row][p.col + 1] = true;
-        }
-    }
-
+    printf("%d\n", steps);
 
     return 0;
 }
-

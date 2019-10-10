@@ -1,83 +1,73 @@
-
-///*******************incomplete ******************** http://code.cloudkaksha.org/spoj/spoj-buglife-solution
-
 #include<bits/stdc++.h>
 using namespace std;
-#define n 2005
-#define ll long long
-#define pb push_back
+#define ll                  long long
+#define scl(n)              scanf("%lld", &n)
+#define fr(i,n)             for (ll i=0;i<n;i++)
+#define fr1(i,n)            for(ll i=1;i<=n;i++)
+#define pfl(x)              printf("%lld\n",x)
+#define pb                  push_back
 
-
-bool bfs(vector<ll>graph[], ll n)
+ll bfs(vector<ll>g[], ll n)
 {
-    bool visited[n+1]= {0};
-    ll colour[n+1];
-    ll node,flag=0;
-    memset(visited,0, sizeof(visited));
-    memset(color,-1, sizeof(color));
+    bool v[n+1]={0};
+    ll c[n+1];
+    ll nd, flg=0;
 
-    fr1(k,n)
+    memset(c, -1, sizeof(c));
+    memset(v, 0,sizeof(v) );
+
+    fr1(i,n)
     {
-        if(!visited[k])
+        if(!v[i])
         {
-            ll i,u;
             queue<ll>q;
-            colour[k]=1;
-            q.push(k);
-
+            q.push(i);
+            c[i]=1;
             while(!q.empty())
             {
-                ll node=q.front();
+                nd=q.front();
                 q.pop();
-                visited[node]=1;
-
-                for(i=0; i<graph[node].size(); i++)
+                v[nd]=1;
+                fr(j, g[nd].size() )
                 {
-                    u=graph[s][i];
-                    if(colour[u]==-1)
-                    {
-                        colour[u]=! colour[node];
-                    }
-                    else if(colour[u]==colour[node])
-                    {
-                        flag=1;
-                        break;
-                    }
-                    if(!visited[ u ])
-                        q.push(u);
+//                    ll f=g[nd][j];
+//                    if(c[ f ]==-1)c[f] = !c[nd];
+//                    if(c[f]==c[nd] ){ flg=1; break;}
+//                    if(!v[f] )q.push(f);
+
+                    ll f=g[nd][j];
+                    if( c[f] ==-1) c[f]= !c[nd]  ;
+                    if(c[f]==c[nd] ) {flg=1; break;}
+                    if(!v[f])q.push(f);
                 }
-                if(flag)
-                    break;
+                if(flg)break;
             }
         }
-        if(flag)
-            break;
+        if(flg)break;
     }
-}
+    return flg;
 }
 
 int main()
 {
-    ll m,a,b,i,f,t,j;
-    cin>>t;
-    for(j=0; j<t; j++)
+    ll m,n,i,j,k,a,b;
+    cin>>k;
+    fr1(t,k)
     {
-        ll flag=0;
-        cin>>f>>m;
-        vector<ll >graph[n];
+        cin>>m>>n;
+        vector<ll>g[m+1];
 
-        for(i=0; i<m; i++)
+        fr(i,n)
         {
             cin>>a>>b;
-            graph[a].pb(b);
-            graph[b].pb(a);
+            g[a].pb(b);
+            g[b].pb(a);
         }
 
+        printf("Scenario #%lld:\n",t);
 
-        if(bfs(graph, n))
-            printf("Scenario #%lld:\nSuspicious bugs found!\n",j+1);
-        else
-            printf("Scenario #%lld:\nNo suspicious bugs found!\n",j+1);
+       if(bfs(g, m))printf("Suspicious bugs found!\n");
+       else printf("No suspicious bugs found!\n");
+
     }
-    return 0;
 }

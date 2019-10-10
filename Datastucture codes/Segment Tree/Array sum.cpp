@@ -41,7 +41,7 @@ void   update(ll node, ll c, ll n, ll i, ll newvalue)
 }
 
 
-int  quary(ll node, ll c, ll n, ll i, ll j )
+int  query(ll node, ll c, ll n, ll i, ll j )
 {
     if(i>n|| j<c)
     {
@@ -54,8 +54,9 @@ int  quary(ll node, ll c, ll n, ll i, ll j )
     ll left=node*2;
     ll right=node*2+1;
     ll mid=(c+n)/2;
-    int p=quary(left, c, mid, i,j);
-    int p1=quary(right, mid+1, n, i,j);
+    int p=query(left, c, mid, i,j);
+    int p1=
+    query(right, mid+1, n, i,j);
     return p+p1;
 }
 
@@ -71,9 +72,9 @@ int main()
     }
     build_tree(1,1,n);
     update(1,1,n,2,0);
-    cout<<quary(1,1,n,1,3)<<endl;
+    cout<<query(1,1,n,1,3)<<endl;
     update(1,1,n,2,2);
-    cout<<quary(1,1,n,2,2)<<endl;
+    cout<<query(1,1,n,2,2)<<endl;
 
 }
 

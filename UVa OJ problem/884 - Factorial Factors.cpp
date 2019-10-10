@@ -20,6 +20,7 @@ void sieve()
     for(ll i=3; i<=sqrt(M); i+=2) if(i<=sqrt(M) && !prime[i] )for(ll j=i*i; j<=M; j+=2*i) prime[j]=1;
     for(ll i=0; i<=M; i++) if(prime[i]==0)  p[k]=i,k++;
 }
+
 void pre_calc()
 {
     sieve();

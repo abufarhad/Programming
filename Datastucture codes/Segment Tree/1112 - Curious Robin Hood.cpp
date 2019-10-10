@@ -23,7 +23,6 @@ void  build_tree(ll node, ll c, ll n)
     build_tree(left, c, mid);
     build_tree(right, mid+1, n);
     tree[node]=tree[left]+tree[right];
-    //tree[node]=max(tree[left],tree[right]);
 }
 
 void   update(ll node, ll c, ll n, ll i, ll newvalue)

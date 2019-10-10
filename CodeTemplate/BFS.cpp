@@ -4,9 +4,7 @@ bool  visited[10000];
 
 void   bfs(ll node)
 {
-
     q.push(node);
-
 
     while(!q.empty())
     {

@@ -12,11 +12,9 @@ int dfs(int s)
     {
         if(!visited[adj[s][i]])
         {
-            ans++;
             dfs(adj[s][i]);
         }
     }
-
 }
 
 int main()
@@ -31,7 +29,7 @@ int main()
         adj[b].push_back(a);
     }
     dfs(1);
-    cout<<ans<<endl;
+    //cout<<ans<<endl;
     if(n==e+1&&n==ans+1) cout<<"YES"<<endl;
     else cout<<"NO"<<endl;
 }

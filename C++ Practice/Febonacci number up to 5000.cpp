@@ -57,7 +57,7 @@ string dp(ll n)
     if(n==0)return "0";
     if(n==1)return "1";
     if(n==2)return "1";
-    if(mem[n].size()){  return mem[n];}     ///don't understand
+    if(mem[n].size()){  return mem[n];}     ///For memoization ( For recursive way a way call multiple time so, to check if previously calculated or not the way, if yes then return otherwise calls.
     return mem[n]=add(dp(n-1), dp(n-2));
 
 

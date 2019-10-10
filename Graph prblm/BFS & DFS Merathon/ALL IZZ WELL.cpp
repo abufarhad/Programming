@@ -21,7 +21,7 @@ void dfs(int m, int n, int cnt)
     {
         int   tempx=m+x[i];
         int    tempy=n+y[i];
-          if(tempx>=0&&tempx<r&&tempy>=0&&tempy<c&&map  [tempx][tempy]==a[cnt]&& visit[tempx][tempy] == 0)
+        if(tempx>=0&&tempx<r&&tempy>=0&&tempy<c&&map  [tempx][tempy]==a[cnt]&& visit[tempx][tempy] == 0)
         {
             dfs(tempx,tempy,cnt+1);
             if(cheak==1)
@@ -50,7 +50,7 @@ int main()
             {
                 if(map[i][j]=='A')
                 {
-                    dfs(i,j,0);
+                    dfs(i,j,1);
                 }
             }
         }

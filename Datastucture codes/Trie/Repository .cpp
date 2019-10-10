@@ -41,7 +41,7 @@ void insert_string( tri *root, char *s,ll indx, ll id )
 ll   search_string( tri *root, char *s)
 {
   //  struct tri *node=root;
-        for(ll i=0; s[i] !='\0'; i++)
+    for(ll i=0; s[i] !='\0'; i++)
     {
         ll index=s[i]-'a';
         if( root->child[index]==NULL )  return 0;

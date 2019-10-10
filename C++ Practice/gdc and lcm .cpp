@@ -3,19 +3,19 @@ using namespace std;
 
 int gdc( int m,int n)
 {
-    if(m>n){
-    if(m%n==0) return n;
-    return (n,m%n);
+    if(m>n)
+    {
+        if(m%n==0)  return n;
+        return (n,m%n);
     }
-    else
-    if(n%m==0) return m;
+    else if(n%m==0)  return m;
     return (m,n%m);
 }
 
 //int gdc();
 int lcm(int m,int n)
 {
-return (m*n)/gdc(m,n);
+    return (m*n)/gdc(m,n);
 
 }
 
