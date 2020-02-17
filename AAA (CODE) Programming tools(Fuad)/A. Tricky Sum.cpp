@@ -16,11 +16,15 @@ int main()
     cin>>t;
     ll n,total,two,j,i,res;
 
-    for(i=0;i<t;i++){
+    for(i=0; i<t; i++)
+    {
         cin>>n;
-        total=0;two=0;j=1;
+        total=0;
+        two=0;
+        j=1;
         total=(n*(n+1))/2;
-        while(j<=n){
+        while(j<=n)
+        {
             two=two+j;
             j=j*2;
         }

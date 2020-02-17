@@ -21,7 +21,7 @@ pair< pair<int, int>, int> queries[100500];
 // use with std::sort. It is a function, which must return True
 // if query x must come earlier than query y, and False otherwise.
 inline bool mo_cmp(const pair< pair<int, int>, int> &x,
-        const pair< pair<int, int>, int> &y)
+                   const pair< pair<int, int>, int> &y)
 {
     int block_x = x.first.first / BLOCK_SIZE;
     int block_y = y.first.first / BLOCK_SIZE;
@@ -59,7 +59,8 @@ int main()
 
     // Read input queries, which are 0-indexed. Store each query's
     // original position. We will use it when printing answer.
-    for(int i = 0; i < Q; i++) {
+    for(int i = 0; i < Q; i++)
+    {
         cin >> queries[i].first.first >> queries[i].first.second;
         queries[i].second = i;
     }
@@ -70,27 +71,32 @@ int main()
     // Set up current segment [mo_left, mo_right].
     int mo_left = 0, mo_right = -1;
 
-    for(int i = 0; i < Q; i++) {
+    for(int i = 0; i < Q; i++)
+    {
         // [left, right] is what query we must answer now.
         int left = queries[i].first.first;
         int right = queries[i].first.second;
 
         // Usual part of applying Mo's algorithm: moving mo_left
         // and mo_right.
-        while(mo_right < right) {
+        while(mo_right < right)
+        {
             mo_right++;
             add(arr[mo_right]);
         }
-        while(mo_right > right) {
+        while(mo_right > right)
+        {
             remove(arr[mo_right]);
             mo_right--;
         }
 
-        while(mo_left < left) {
+        while(mo_left < left)
+        {
             remove(arr[mo_left]);
             mo_left++;
         }
-        while(mo_left > left) {
+        while(mo_left > left)
+        {
             mo_left--;
             add(arr[mo_left]);
         }

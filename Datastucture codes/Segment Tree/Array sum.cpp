@@ -43,10 +43,13 @@ void   update(ll node, ll c, ll n, ll i, ll newvalue)
 
 int  query(ll node, ll c, ll n, ll i, ll j )
 {
+    ///(l..r)....  (x..y)    or  (x..y)...(l..r)
     if(i>n|| j<c)
     {
         return 0;
     }
+
+    ///x....  (l..r)  ...y
     if(c>=i&&n<=j )
     {
         return tree[node];
@@ -55,8 +58,7 @@ int  query(ll node, ll c, ll n, ll i, ll j )
     ll right=node*2+1;
     ll mid=(c+n)/2;
     int p=query(left, c, mid, i,j);
-    int p1=
-    query(right, mid+1, n, i,j);
+    int p1=query(right, mid+1, n, i,j);
     return p+p1;
 }
 

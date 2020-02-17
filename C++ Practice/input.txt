@@ -1,23 +1,6 @@
+2 2 
+a b
+c d
 2
-farhad
-67
-batsman
-600
-5
-3
-jf
-34
-batsman
-500
-5
-3
-ffff
-87
-footballer
-50
-10
-hhhhh
-765
-footballer
-60
-10
+1 
+12

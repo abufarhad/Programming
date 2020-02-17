@@ -2,6 +2,20 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/*
+ll big(ll a,ll b)
+{
+    ll res=1,y=a;
+    while(b>0)
+    {
+        if(b%2)  res=(res*y)%mod;
+        y*=y;
+        y%=mod;
+        b/=2;
+    }
+    return res%mod;
+}
+*/
 long long bigm(long long b,long long p,long long m)
 {
     if(p==0) return 1;

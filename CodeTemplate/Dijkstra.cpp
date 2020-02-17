@@ -7,7 +7,7 @@ using namespace std;
 #define fr(i,n)             for (ll i=0;i<n;i++)
 #define fr1(i,n)            for(ll i=1;i<=n;i++)
 #define pfl(x)              printf("%lld\n",x)
-#define endl 	    "\n"
+#define endl 	     "\n"
 #define pb                  push_back
 #define asort(a)            sort(a,a+n)
 #define dsort(a)            sort(a,a+n,greater<int>())
@@ -24,6 +24,8 @@ using namespace std;
 #define pir       pair<ll,ll>
 
 vector< pir > graph[N];
+
+/// Syntax to create a min heap for priority queue, min value in the top()
 priority_queue< pir, vector<pir> , greater< pir > > pq;
 
 ll dist[N], nxt[N], pr[N], node;
@@ -78,22 +80,16 @@ void dijkstra(ll n)
 
 int main()
 {
-
     ll m,t,a,b,c,d,i,j,k,x,y,z,l,q,r;
+    ll cnt=0,ans=0;
+    scl(node);scl(m);
 
-      ll cnt=0,ans=0;
-      scl(node);scl(m);
-
-
-      for(i=0;i<m;i++)
-      {
-          cin>>a>>b>>c;
-          graph[a].pb(make_pair(b,c) );
-          graph[b].pb(make_pair(a,c) );
-      }
-
-
-      dijkstra(1);
-
+    for(i=0;i<m;i++)
+    {
+      cin>>a>>b>>c;
+      graph[a].pb(make_pair(b,c) );
+      graph[b].pb(make_pair(a,c) );
+    }
+    dijkstra(1);
 return 0;
 }

@@ -21,14 +21,14 @@ int main( )
     cin>>t;
     while(t--){
     cin>>m>>n;
-    gcd(m,n);
+    //gcd(m,n);
     cout<<"GCD is = "<<gcd(m,n)<<endl;
-//    cout<<"LCM is = "<<lcm(m,n)<<endl;}
+    cout<<"LCM is = "<<lcm(m,n)<<endl;}
    //cout<<lcm(m,n)<<" "<<gcd(m,n)<<endl; }
 
-   if((m*n)==lcm(m,n)){ printf("yes\n");
+   //if((m*n)==lcm(m,n)){ printf("yes\n");
+   //}
+   //else printf("no\n");
    }
-   else printf("no\n");
-   }
-}
+
 

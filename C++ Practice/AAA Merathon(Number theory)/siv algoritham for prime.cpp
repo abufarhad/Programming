@@ -75,7 +75,7 @@ ll sieve(ll n)
 }
 */
 
-#define mx                  1000000000
+#define mx                  100000000
 
 bool prime[mx];
 ll p[mx];
@@ -89,7 +89,7 @@ void sieve()
     {
         if(prime[i]==0)
         {
-            for(j=i*i ; j<=mx; j+=2*j)prime[j]=1;
+            for(j=i*i ; j<=mx; j+=2*i)prime[j]=1;
         }
     }
 
@@ -98,6 +98,7 @@ void sieve()
     for(i=3;i<=mx;i++)
     {
         if(prime[i]==0)p[k]=i, k++;
+
     }
 
 

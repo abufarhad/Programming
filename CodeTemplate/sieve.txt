@@ -1,0 +1,22 @@
+vector<ll> primes;
+
+void sieve()
+{
+    bool isPrime[MAX];
+    for (ll i = 0; i < MAX; ++i) isPrime[i] = true;
+
+    for (ll i = 3; i * i <= MAX; i += 2)
+    {
+        if (isPrime[i])
+        {
+            for (ll j = i * i; j <= MAX; j += i)
+            {
+                isPrime[j] = false;
+            }
+        }
+    }
+    primes.push_back(2);
+    for (ll i = 3; i < MAX; i += 2)  if (isPrime[i]) primes.push_back(i);
+}
+
+

@@ -1,0 +1,33 @@
+
+/***************************** to int******************************/
+ll to_int(string s)
+{
+    ll num=0, i=0;
+    while(i<s.size())
+    {
+        num=num*10+(s[i]-'0');
+        i++;
+        //cout<<num<<endl;
+    }
+    return num;
+}
+
+// or *************** int n= stoi(s) ***************
+
+
+/***************************** to string ******************************/
+
+string con_string(ll n)
+{
+    string s;
+    while(n)
+    {
+        s+=(n%10 + '0');
+        n/=10;
+    }
+    reverse(s.begin(), s.end());
+    return s;
+}
+
+//or *************** to_string(n) ***************
+

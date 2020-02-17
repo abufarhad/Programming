@@ -21,7 +21,7 @@ void sieve()
     {
         if(prime[i]==0)
         {
-            for(j=i*i ; j<=mx; j+=2*j)prime[j]=1;
+            for(j=i*i ; j<=mx; j+=2*i)prime[j]=1;
         }
     }
     p[0]=2;
@@ -36,7 +36,7 @@ int main()
 {
     sieve();
     ll m,n,t,b,c,d,i,j,k,x,y,z,l,q,r;
-    //fr(i, 20)cout<<p[i]<<" ";
+    fr(i, 20)cout<<p[i]<<" ";
 
     cin>>t;
 

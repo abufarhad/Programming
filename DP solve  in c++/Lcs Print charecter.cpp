@@ -29,26 +29,26 @@ int lcs(char x[], char y[], int m, int n)
 
     while(i>0&&j>0)
     {
-        cout<<"i =" <<i<<" "<< "j = "<<j<<endl;
-        cout<<"Before 1 = dp[i-1][j] = "<<dp[i-1][j]<<" dp[i][j-1] = "<<dp[i][j-1]<<endl;
-        cout<<"x[i-1] = "<<x[i-1]<<" "<<"y[j-1]  = "<<y[j-1] <<" "<<endl<<endl;
+//        cout<<"i =" <<i<<" "<< "j = "<<j<<endl;
+//        cout<<"Before 1 = dp[i-1][j] = "<<dp[i-1][j]<<" dp[i][j-1] = "<<dp[i][j-1]<<endl;
+//        cout<<"x[i-1] = "<<x[i-1]<<" "<<"y[j-1]  = "<<y[j-1] <<" "<<endl<<endl;
 
         if(x[i-1]==y[j-1])
         {
             Lcs[index-1]=x[i-1];
-            cout<<"Index = "<<Lcs[index-1]<<" "<<endl<<endl;
+            //cout<<"Index = "<<Lcs[index-1]<<" "<<endl<<endl;
             index--, i--, j--;
         }
-        cout<<"i = "<<i<<" j = "<<j<<endl;
-        cout<<"Before 2 = dp[i-1][j] = "<<dp[i-1][j]<<" dp[i][j-1] = "<<dp[i][j-1]<<endl;
+//        cout<<"i = "<<i<<" j = "<<j<<endl;
+//        cout<<"Before 2 = dp[i-1][j] = "<<dp[i-1][j]<<" dp[i][j-1] = "<<dp[i][j-1]<<endl;
 
         if( dp[i-1][j]>dp[i][j-1])
         {
             i--;
         }
         else j--;
-        cout<< "i= "<<i<<"  j= "<<j<<endl;
-        cout<<"After = dp[i-1][j] = "<<dp[i-1][j]<<" dp[i][j-1] = "<<dp[i][j-1]<<endl;
+//        cout<< "i= "<<i<<"  j= "<<j<<endl;
+//        cout<<"After = dp[i-1][j] = "<<dp[i-1][j]<<" dp[i][j-1] = "<<dp[i][j-1]<<endl;
 
     }
 

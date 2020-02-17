@@ -15,7 +15,10 @@ ll a[mx], tree[mx*4];
 
 ll build_tree(ll nd, ll l, ll r)
 {
-    if(l==r){return tree[nd]=a[l] ;}
+    if(l==r)
+    {
+        return tree[nd]=a[l] ;
+    }
 
     ll left=nd*2;
     ll right =nd*2+1;
@@ -28,8 +31,10 @@ ll build_tree(ll nd, ll l, ll r)
 
 ll query(ll nd, ll l, ll r, ll x, ll y)
 {
-    if( y<l || x >r  )return INT_MAX ;
-    else if(x<=l  and y>=r ) return tree[nd];
+    if( y<l || x >r  )
+        return INT_MAX ;
+    else if(x<=l  and y>=r )
+        return tree[nd];
     ll left=nd*2;
     ll right =nd*2+1;
     ll mid=(l+r)/2;
@@ -51,6 +56,7 @@ int main()
         scl(n), scl(q);
         fr1(i,n)scl(a[i]);
         build_tree(1,1,n);
+
         pcas(x);
         while(q--)
         {
