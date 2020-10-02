@@ -25,9 +25,7 @@ void BitSeive()
     }
 
     puts("2");
-    for(i=3; i<=mx; i+=2)
-        if( Check(status[i>>5],i&31)==0)
-            printf("%d\n",i);
+    for(i=3; i<=mx; i+=2) if( Check(status[i>>5],i&31)==0)   printf("%d\n",i);
 }
 
 int main()

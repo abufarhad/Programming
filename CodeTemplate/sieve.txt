@@ -19,4 +19,13 @@ void sieve()
     for (ll i = 3; i < MAX; i += 2)  if (isPrime[i]) primes.push_back(i);
 }
 
+//Only check
+    for(int i = 3 ; i<= sqrt(N) ; i+=2)
+    {
+        if(!primes[i])
+        {
+            for(int j = i*i ; j<= N ; j+=2*i)   primes[j] = 1;
+        }
+    }
+
 

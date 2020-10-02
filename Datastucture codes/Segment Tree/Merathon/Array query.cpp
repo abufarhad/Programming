@@ -31,10 +31,9 @@ ll build_tree(ll nd, ll l, ll r)
 
 ll query(ll nd, ll l, ll r, ll x, ll y)
 {
-    if( y<l || x >r  )
-        return INT_MAX ;
-    else if(x<=l  and y>=r )
-        return tree[nd];
+    if( y<l || x >r  )  return INT_MAX ;
+    else if(x<=l  and y>=r )   return tree[nd];
+
     ll left=nd*2;
     ll right =nd*2+1;
     ll mid=(l+r)/2;

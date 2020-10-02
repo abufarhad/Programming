@@ -4,3 +4,20 @@ ll convert_binary(ll n)
     if(n%2==0) return 10*convert_binary(n/2);
     else return 10*convert_binary(n/2) +1 ;
 }
+
+// From decimal to any conversion 
+
+ 
+ll convert(ll x, int k) {
+	ll ret = 0;
+	int cnt = 0;
+	while(x > 0) {
+		++cnt;
+		int rem = x % k;
+		if(rem > 1) return -1;
+		if(rem) ret = (ret | (1LL << cnt));
+		x /= k;
+	}
+	return ret;
+}
+ 

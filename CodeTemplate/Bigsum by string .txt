@@ -1,8 +1,7 @@
 string add(string a, string b)
 {
     string c,d;
-    if(a.size()<b.size())
-        swap(a,b);
+    if(a.size()<b.size())   swap(a,b);
 
     ll gap=a.size()-b.size();
 
@@ -22,8 +21,7 @@ string add(string a, string b)
         x%=10;
         d+=(x+'0');    ///converted to string
     }
-    if(carry)
-        d+=49;
+    if(carry) d+=49;
 
     reverse(d.begin(), d.end());
     return d;

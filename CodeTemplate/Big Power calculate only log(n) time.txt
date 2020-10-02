@@ -1,0 +1,69 @@
+http://shoshikkha.com/archives/4356
+
+--> when want to calculate = a^n  where n is very big number <--
+
+
+
+//......................................Binary approach......................................// 
+
+ll bigmd(ll b, ll p)
+{
+    ll res=1, rem=b;
+    while(p)
+    {
+        if(p%2==1 ) {res=res*rem%md ;  p--;}
+ 
+        rem=rem*rem%md;
+        p>>=1;
+        //cout<<rem<<" "<<p<<endl;
+    }
+    return res;
+}
+
+
+//......................................Recursion approach......................................// 
+
+ll bigmod(ll b, ll p, ll md)
+{
+    if(p==0)
+        return 1;
+    if(p%2==1)
+    {
+        return ((b%md)*bigmod(b,p-1,md))%md;
+    }
+    else
+    {
+        ll y=bigmod(b,p/2,md);
+        return (y*y)%md;
+    }
+}
+
+
+//......................................String  approach......................................// 
+int power(int a,int n)
+{
+    string bin="";
+    int temp;
+	
+    //first converting to binary 
+    while(n>0)
+    {
+        temp=n%2;
+        if(temp==0) bin+="0";
+        else bin+="1";
+        n/=2;
+    }
+    reverse(bin.begin(),bin.end());
+
+
+    int res=1; // It is a bottom up approach . so, initial or base result ( Ex: 5^0 = 1 )
+
+    for(int i=0; i<bin.size(); i++)
+    {
+        res=res*res;
+        if(bin[i]=='1') res=a*res;
+    }
+    return res;
+}
+
+

@@ -6,10 +6,10 @@ using namespace std;
 int main()
 {
     ll i,j,k,l,n;
-    //string s;5
+    string s;
     
     cout<<"Take INput"<<endl;
-    cin>>n;
+    cin>>s>>n;
     ll a[n];
     for(i=1; i<=n;i++)
     {

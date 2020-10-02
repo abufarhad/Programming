@@ -1,0 +1,14 @@
+void dfs(ll src, ll dist)
+{
+    vis[src]=1;
+    sub_tree_sz[src]=1;
+    distance_from_root[src]=dist;
+
+    for(auto now : v[src])
+    {
+        if(vis[now]==1 )continue;
+        dfs(now , dist+1);
+
+        sub_tree_sz[src]+=sub_tree_sz[now];
+    }
+}

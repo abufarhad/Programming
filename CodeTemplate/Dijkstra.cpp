@@ -1,95 +1,104 @@
 #include<bits/stdc++.h>
 #include<stdio.h>
+#pragma GCC optimize("Ofast")
+#pragma GCC target("avx,avx2,fma")
 using namespace std;
 
-#define ll                    long long
-#define scl(n)              scanf("%lld", &n)
+
+#define ll                  long long
+#define scl(n)              scanf("%lld",&n)
+#define scll(n, m)          scanf("%lld%lld",&n, &m)
+#define scc(c)	            scanf("%c",&c)
 #define fr(i,n)             for (ll i=0;i<n;i++)
 #define fr1(i,n)            for(ll i=1;i<=n;i++)
 #define pfl(x)              printf("%lld\n",x)
-#define endl 	     "\n"
 #define pb                  push_back
-#define asort(a)            sort(a,a+n)
-#define dsort(a)            sort(a,a+n,greater<int>())
-#define vasort(v)         sort(v.begin(), v.end());
-#define vdsort(v)         sort(v.begin(), v.end(),greater<int>());
+#define debug               cout<<"I am here"<<endl;
+#define pno                 cout<<"NO"<<endl
+#define pys                 cout<<"YES"<<endl
+#define tcas(i,t)           for(ll i=1;i<=t;i++)
+#define all(x) 	            (x).begin(), (x).end()
+#define allrev(x)           (x).rbegin(),(x).rend()
+#define pr                  pair<ll, ll>
+#define inf                 1e18
+#define ff                  first
+#define ss                  second
 #define pn                  printf("\n")
-#define md                  10000007
-#define debug               printf("I am here\n")
-#define ps                  printf(" ")
-#define l(s)                      s.size()
-#define tcas(i,t)             for(ll i=1;i<=t;i++)
-#define pcas(i)                printf("Case %lld: ",i)
-#define N 100006
-#define pir       pair<ll,ll>
 
-vector< pir > graph[N];
-
+#define N 200005
 /// Syntax to create a min heap for priority queue, min value in the top()
-priority_queue< pir, vector<pir> , greater< pir > > pq;
+priority_queue<pr  , vector<pr> , greater<pr> > pq;
 
-ll dist[N], nxt[N], pr[N], node;
+ll par[N] , nxt[N] , node ,edge, dist[N];
+vector<pr>v[N];
 
-
-void dijkstra(ll n)
+void Dijkstra(ll n)
 {
-    fr(i,N)dist[i]=LLONG_MAX;
-
-    fr(i,N)pr[i]=-1;
-
+    fr(i, N)par[i]=-1 , dist[i]=inf;
     dist[n]=0;
-    pq.push(make_pair( 0, n));
+    pq.push({0 , n});
+
     while(!pq.empty())
     {
-        ll u=pq.top().second;
+        ll u=pq.top().ss;
         pq.pop();
-        fr(i, graph[u].size())
-        {
-            ll v=graph[u][i].first;
-            ll cost=graph[u][i].second;
 
-            if( dist[v] > dist[u]+cost )
+        for(auto now : v[u] )
+        {
+            ll v=now.ff ,  cost=now.ss;
+            if(dist[v] > dist[u]+cost )
             {
-                 pr[v]=u;
-                 //cout<<pr[v]<<" ";
-                 dist[v]=dist[u]+cost;
-                 pq.push(make_pair(dist[v], v ));
+                dist[v]=dist[u]+cost;
+                par[v]=u;
+                pq.push({dist[v]  , v });
             }
         }
     }
+}
 
-
-///Shortest path printing
-    vector<ll>v;
-
+void path_print()
+{
+    vector<ll>path;
     ll des_node=node;
-    while(pr[ des_node] !=-1 )
+
+    while(par[des_node]!=-1)
     {
-         v.pb(des_node);
-         des_node=pr[des_node];
+        path.pb(des_node);
+        des_node=par[des_node];
     }
-    v.pb(1);
-    reverse(v.begin(), v.end());
+    path.pb(1);
+    reverse(all(path));
 
-    if(v.size()>1) fr(i,v.size())cout<<v[i]<<" ";
-    else cout<<"-1"<<endl;
-
-    //pn;
+    if(path.size()>1) {fr(i, path.size())cout<<path[i]<<" "; pn;}
+    else cout<<-1<<endl;
 }
 
 
 int main()
 {
-    ll m,t,a,b,c,d,i,j,k,x,y,z,l,q,r;
-    ll cnt=0,ans=0;
-    scl(node);scl(m);
+    ll t;
+    ll m,n,a, b, c,d,i,j,k,x,y,z,l,r, p, q;
+    ll cnt=1,cn=0, cnn=0,ans=0,sum=0 ;
+    scll(node , edge);
 
-    for(i=0;i<m;i++)
+    fr(i, edge)
     {
-      cin>>a>>b>>c;
-      graph[a].pb(make_pair(b,c) );
-      graph[b].pb(make_pair(a,c) );
+        cin>>a>>b>>c;
+
+        v[a].pb({b, c});
+        v[b].pb({a, c});
     }
-    dijkstra(1);
-return 0;
+
+    Dijkstra(1);
+    path_print();
+
+    //fr(i, node)cout<<dist[i+1]<<" ";pn;
+
+    return 0;
 }
+
+/// **************************Before submit****************************
+
+///    ****Please check all base case output  and printing " YES or NO " ***
+///    *check for integer overflow,array bounds
+///    *check for n=1

@@ -6,7 +6,8 @@ using namespace std;
 int f[MAXX];
 string txt, pattern;
 
-void pattern_precalc(string  & pattern, int len_p)
+//longest_prefix_suffix_match_lps
+void pattern_longest_prefix_suffix_match_lps(string  & pattern, int len_p)
 {
     int k=1,len=0,m;
     f[0]=0;
@@ -15,25 +16,22 @@ void pattern_precalc(string  & pattern, int len_p)
         if(pattern[k]==pattern[len])
         {
             f[k++]=++len;
-
         }
         else
         {
-            if(len)
-                len=f[len-1];
-            else
-                f[k++]=0;
+            if(len) len=f[len-1];   //go to the value of previous character then j(len) point here and again compare with ith(k) character
+            else f[k++]=0;
         }
     }
-
 }
+
 int kmp(string  &txt, string  & pattern)
 {
     int i=0,j=0,cnt=0;
     int len_t=txt.size();
 
     int len_p=pattern.size();
-    pattern_precalc(pattern,len_p);
+    pattern_longest_prefix_suffix_match_lps(pattern,len_p);
     while(i<len_t)
     {
         if(txt[i]==pattern[j])
@@ -48,10 +46,8 @@ int kmp(string  &txt, string  & pattern)
         }
         else
         {
-            if(j)
-                j=f[j-1];
-            else
-                i++;
+            if(j) j=f[j-1];
+            else i++;
         }
     }
     return cnt;

@@ -1,17 +1,16 @@
-void factor(int n)
+void prime_factor(ll n)
 {
-    int i ,cnt=0,cn=0;
-    for(i=2; i<=(int)sqrt(n); i++)
+    ll i ,cnt=0,cn=0;
+    for(i=2; i*i<=n; i++)
     {
         while(n % i == 0)
         {
-            printf("%d ",i);
+            printf("%lld ",i);
             cnt++;
             n /= i;
         }
     }
-    if (n > 1) printf("%d",n);
-    cn++;
+    if (n > 1) printf("%lld",n), cn++;
     printf("\n");
-    printf("%d \n",(cnt+cn));
+    printf("%lld \n",(cnt+cn));
 }

@@ -33,8 +33,7 @@ void sieve(int n)
     {
         if(!nP[i])
         {
-            for(j = i + i; j <= n; j+=i)
-                nP[j] = true;
+            for(j = i + i; j <= n; j+=i)  nP[j] = true;
         }
     }
     j = 0;
@@ -49,42 +48,34 @@ void sieve(int n)
 
 void clear(int n)
 {
-    for(i = 0; i <= n; i++)
-        nP[i] = false;
+    for(i = 0; i <= n; i++) nP[i] = false;
 }
 
 int countPrime()
 {
     clear(r - l + 1);
-    if(l == 1)
-        nP[0] = true;
+    if(l == 1) nP[0] = true;
 
     for(i = 0; i < primeCnt; i++)
     {
         start = (l / primes[i]);
-        if(start * primes[i] != l)
-            start++;
+        if(start * primes[i] != l)    start++;
 
-        if(start > 1)
-            start = start * primes[i];
-        else
-            start = start * primes[i] + primes[i];
+        if(start > 1)    start = start * primes[i];
+        else    start = start * primes[i] + primes[i];
 
         for(j = start; j <= r;)
         {
             nP[j - l] = true;
-            if(r - j >= primes[i])
-                j += primes[i];
-            else
-                break;
+            if(r - j >= primes[i])    j += primes[i];
+            else       break;
         }
     }
+
     j = 0;
     r -= l;
 
-    for(i = 0; i <= r; i++)
-        if(!nP[i])
-            j++;
+    for(i = 0; i <= r; i++)  if(!nP[i])  j++;
     return j;
 }
 

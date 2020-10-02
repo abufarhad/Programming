@@ -6,10 +6,10 @@ ll phi(ll n)
     {
         if(n%i)continue;
         while(n%i==0)  n/=i;
-        ans= (ans/i)*(i-1);
+        ans-= (ans/i);	               //n * ( 1- (1/p1 ) ) * ..... 
     }
 
-    if(n>1)ans=(ans/n)*(n-1);
+    if(n>1)ans-=(ans/n);
 
     return ans;
 }

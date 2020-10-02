@@ -7,43 +7,42 @@ using namespace std;
 #define pfl(x)              printf("%lld\n",x)
 #define endl 	            "\n"
 #define pb                  push_back
-#define mx                  100000000
+#define MAX                  100000000
 
-bool prime[mx];
-ll p[mx];
+vector<ll> primes;
+
 void sieve()
 {
-    ll i,j;
-    prime[0]=prime[1]=1;
+    bool isPrime[MAX];
+    for (ll i = 0; i < MAX; ++i) isPrime[i] = true;
 
-    for(i=4;i<=mx;i+=2)prime[i]=1;
-    for(i=3;i<=sqrt(mx); i+=2)
+    for (ll i = 3; i * i <= MAX; i += 2)
     {
-        if(prime[i]==0)
+        if (isPrime[i])
         {
-            for(j=i*i ; j<=mx; j+=2*i)prime[j]=1;
+            for (ll j = i * i; j <= MAX; j += i)
+            {
+                isPrime[j] = false;
+            }
         }
     }
-    p[0]=2;
-    ll k=1;
-    for(i=3;i<=mx;i++)
-    {
-        if(prime[i]==0)p[k]=i, k++;
-    }
+    primes.push_back(2);
+    for (ll i = 3; i < MAX; i += 2)  if (isPrime[i]) primes.push_back(i);
 }
+
 
 int main()
 {
     sieve();
     ll m,n,t,b,c,d,i,j,k,x,y,z,l,q,r;
-    fr(i, 20)cout<<p[i]<<" ";
+    fr(i, 20)cout<<primes[i]<<" ";
 
     cin>>t;
 
     while(t--)
     {
         cin>>n;
-        cout<<p[n]<<endl;
+        //cout<<p[n]<<endl;
     }
     return 0;
 }
