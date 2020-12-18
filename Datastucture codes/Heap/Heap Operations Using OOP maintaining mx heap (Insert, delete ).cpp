@@ -41,7 +41,6 @@ class Bheap
     void Print();
     ll Top();
 };
-
 ll Bheap ::Top()
 {
     return v[0];
@@ -70,6 +69,7 @@ void Bheap ::Insert(ll val)
         }
     }
 }
+
 
 bool Bheap::Search(ll val)
 {
@@ -100,8 +100,8 @@ int main()
 {
     Bheap h;
     ll n , m ;
-   while(1)
-   {
+    while(1)
+    {
        scl(n);
        if(n==1)
        {
@@ -122,4 +122,3 @@ int main()
    }
     return 0;
 }
-

@@ -22,7 +22,7 @@ int main()
         ans=max(ans, f[i]);
 
         b[ f[i] ]=a[i];
-        cout<<f[i]<<" "<<b[f[i] ]<<" "<<a[i]<<endl;
+        //cout<<f[i]<<" "<<b[f[i] ]<<" "<<a[i]<<endl;
     }
 
     cout<<"Length of LCS "<<ans<<endl;
