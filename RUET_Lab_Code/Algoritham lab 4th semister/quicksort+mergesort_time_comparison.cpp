@@ -34,7 +34,6 @@ void quickSort(vector<long long int >arr, long long low, long long high)
 {
     if (low < high)
     {
-
         long long pi = partition(arr, low, high);
 
         quickSort(arr, low, pi - 1);
@@ -50,7 +49,9 @@ void printArray(long long arr[], long long size)
         cout<<arr[i]<<" ";}
 cout<<endl;
 }
-///////////////////////////////////////Merge sort ////////////////////////////////
+
+/** ///////////////////////////////////////Merge sort ////////////////////////////////**/
+
 void merge(long long  l, long long m, long long r)
 {
     cout<<"a";

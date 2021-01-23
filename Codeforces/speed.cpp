@@ -46,99 +46,37 @@ using namespace std;
 #define seg_tree(n) 	    ll left=n*2,right=l+1,mid=(l+r)/2
 #define fast 	ios_base::sync_with_stdio(0);cin.tie(NULL);cout.tie(NULL)
 
-#define conv_string(n)	to_string(n)
-//ll x[10]= {0,-1,-1,1,1,-2,-2,2,2};
-//ll y[10]= {0,-2,2,-2,2,-1,1,-1,1};
-
-/*.....Kings path....*/
-//ll dx[]={-1,-1,-1,0,1,1,1,0};
-//ll dy[]={-1,0,1,1,1,0,-1,-1};
-
-
-
-// sscanf(c, "%s %s", s,s1); // take string buffer  and then distribute all value , here take 2 value and distribute
-///cin.ignore(); // Need when we take input as a string line before  getline(cin,s)
-//ll bigmd(ll b, ll p){  ll res=1, rem=b;  while(p)   { if(p%2==1 ) {res=res*rem%md ;  p--;}  rem=rem*rem%md; p>>=1; } return res;}
-
-//ll find_all_divisor(ll n){  fr1(i,sqrt(n)){     ll x;  if(n % i == 0)  { x = n / i; v.pb(i);  if(i != x) v.pb(x);}}}
-
-
-///Every even integer greater than 2 can be represented as the sum of two primes numbers.
-//count item in array : count(arr,arr+n,'I');
-
-//bool cmp(ll i, ll j){  if( fac[i]==fac[j])return i>j;   return fac[i]< fac[j];  }
-
-/*-----------------------Bitmask------------------*/
-//int Set(int N,int pos){return N=N | (1<<pos);}
-//int reset(int N,int pos){return N= N & ~(1<<pos);}
-//bool check(int N,int pos){return (bool)(N & (1<<pos));}
-/*------------------------------------------------*/
-
-//__builtin_popcount(n) ;  return number of set bit // can check number is power of two because if power of two has only 1 set bit
-
-// lower_bound = greater then or equal
-// upper_bound = greater then
-//lcm=max_element(dp+1, dp+m+1 )-dp;       //return the index of max elements
-
-// set_intersection(v.begin(), v.end(), v1.begin(), v1.end(), inserter(v2 ,v2.begin()));
-//Check if number is power of 2 ---> ans = (n&(n-1) == 0).
-//string_to_dec , hex , bin  => stoll(dec_num, nullptr, 10)
-//digits in a factorial => log( n! ) = log(1*2*3....... * n)
-//SumOfDivisorFormula= SOD(p^a) = (p^(a+1) minus 1)/(p minus 1)
-//bitset<12>(n).to_string(); //to binary
-//bitset<8>(binary_string).to_ulong(); //to_decimal
-//next_permutation(str.begin(), str.end()) , prev_permutation(str.begin(), str.end())
-
-// long double 10 byte=80 bit - long long 8 byte
-//string to int =>  std::istringstream(s) >> num
-//right_most_1= ( i & -i  );
-//cei (n/a) == (n + a-1)/a
-//sum of power of 2(2^0+2^1+....) = 2^(n+1) - 1
-//memset sets the value of every byte, not the actual element on the array. 0 and -1 works as intended because their binary representations have all zeroes and ones respectively.
-//Grace Hopper and Margaret Hamilton
-//ch=ch-32  lowercase to uppercase
-//c = c - 'a' + 'A'; // uppercase to lowercase
-
 #define N 200005
 
 
 int main()
 {
     ll t;
-    cin>>t;
-    //t=1;
+    //cin>>t;
+    t=1;
     tcas(cs, t)
     {
-        ll m,n,b,c,d,i,j,k,x,y,z,l,r, p, q;
+        ll m,n,c,d,i,j,k,x,y,z,l,r, p, q;
         string s,s1, s2, s3, s4;
 
-        ll cnt=0,cn=0,ans=0,sum=0 ;
-        cin>>n;
+        ll cnt=0,cn=0,ans=0,sum=0 , mn=inf;
+        cin>>n>>s>>s1;
 
-        ll a[n];
+        x=l(s) , y=l(s1);
 
-        fr(i,n)cin>>a[i] , ans+=a[i];
-
-        ll  avg=ans/n;
-
-       // pf(a[0]);
         vector<ll>v;
-        v.pb(a[0]);
-
-        x=v[0];
-        if(x%v[1]==0 or v[1]%x==0 )pf(v[0]);
-        else v.pb(avg);
-
-
-        fr1(i , n-1)
+        for(i=0; i<x; )
         {
-            x=v.back() , y=avg;
-            if(a[i]%x==0 or x%a[i]==0 )v.pb(a[i]),  pf(a[i] );
-            else pf(y) , v.pb(y);
+            if(i+1<x and  s[i] == s1[i+1]  and s[i+1]==s1[i])ans++, i+=2;
+            else
+            {
+                if(s[i]!=s1[i])ans++;
+                i++;
+            }
         }
 
-        pn;
-        //cout<<ans;pn;
+
+        cout<<ans;pn;
     }
 
 return 0;

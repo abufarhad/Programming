@@ -1,111 +1,73 @@
-//! Bismillahi-Rahamanirahim.
-/** ========================================**
- ** @Author: Md. Abu Farhad ( RUET, CSE'15)
- ** @Category:
-/** ========================================**/
-
 #include<bits/stdc++.h>
-#include<stdio.h>
 using namespace std;
 
-#define ll                    long long
-#define scl(n)              scanf("%lld", &n)
+#define ll long long
+#define pr pair<ll , ll>
 #define fr(i,n)             for (ll i=0;i<n;i++)
 #define fr1(i,n)            for(ll i=1;i<=n;i++)
-#define pfl(x)              printf("%lld\n",x)
-#define endl 	    "\n"
-#define pb                  push_back
-#define asort(a)            sort(a,a+n)
-#define dsort(a)            sort(a,a+n,greater<int>())
-#define vasort(v)         sort(v.begin(), v.end());
-#define vdsort(v)         sort(v.begin(), v.end(),greater<int>());
+#define ff                  first
+#define ss                  second
 #define pn                  printf("\n")
-#define md                  10000007
-#define debug               printf("I am here\n")
-#define ps                  printf(" ")
-#define l(s)                      s.size()
-#define tcas(i,t)             for(ll i=1;i<=t;i++)
-#define pcas(i)                printf("Case %lld: ",i)
-#define N 100006
-#define pir       pair<ll,ll>
+#define pb                  push_back
+#define N 200005
 
-vector< pir > graph[N];
-priority_queue< pir, vector<pir> , greater< pir > > pq;
-
-ll dist[N], nxt[N], pr[N], node;
+vector<pr>v[N];
+priority_queue<pr , vector<pr> , greater <pr>>pq;
 
 
-void dijkstra(ll n)
+ll n , dist[N] , par[N];
+
+void dijkstra()
 {
-    fr(i,N)dist[i]=LLONG_MAX;
+    fr(i , N)dist[i]=LLONG_MAX;
+    fr(i , N) par[i]=-1;
 
-    fr(i,N)pr[i]=-1;
-
-    dist[n]=0;
-    pq.push(make_pair( 0, n));
+    dist[1]=0;
+    pq.push({0 , 1 } );
     while(!pq.empty())
     {
-        ll u=pq.top().second;
-        pq.pop();
-        fr(i, graph[u].size())
-        {
-            ll v=graph[u][i].first;
-            ll cost=graph[u][i].second;
+        ll u=pq.top().ss;
 
-            if( dist[v] > dist[u]+cost )
+        pq.pop();
+        for(auto now: v[u] )
+        {
+            ll nxt=now.ff , cost=now.ss;
+
+            ll tot=dist[u]+cost;
+            if(dist[nxt]> tot )
             {
-                 pr[v]=u;
-                 //cout<<pr[v]<<" ";
-                 dist[v]=dist[u]+cost;
-                 pq.push(make_pair(dist[v], v ));
+                par[nxt]=u;
+                dist[nxt]=tot;
+
+                pq.push({ tot , nxt });
             }
         }
     }
 
-
-///Shortest path printing
-    vector<ll>v;
-
-    ll des_node=node;
-    while(pr[ des_node] !=-1 )
+    vector<ll>path;
+    ll des_node=n;
+    while( par[des_node]!=-1 )
     {
-         v.pb(des_node);
-         des_node=pr[des_node];
+        path.pb(des_node);
+        des_node=par[des_node];
     }
-    v.pb(1);
-    reverse(v.begin(), v.end());
+    path.pb(1);
 
-    if(v.size()>1) fr(i,v.size())cout<<v[i]<<" ";
-    else cout<<"-1"<<endl;
+    reverse(path.begin() , path.end());
 
-    //pn;
+    if(path.size()>1 ) for(auto i: path)cout<<i<<" ";
+    else cout<<-1<<endl;
 }
-
 
 int main()
 {
-
-    ll m,t,a,b,c,d,i,j,k,x,y,z,l,q,r;
-
-      ll cnt=0,ans=0;
-      scl(node);scl(m);
-
-
-      for(i=0;i<m;i++)
-      {
-          cin>>a>>b>>c;
-          graph[a].pb(make_pair(b,c) );
-          graph[b].pb(make_pair(a,c) );
-      }
-
-
-
-      dijkstra(1);
-
-return 0;
+    ll  m,x, y,z;
+    cin>>n>>m;
+    fr(i , m)
+    {
+        cin>>x>>y>>z;
+        v[x].pb({ y, z});
+        v[y].pb({x, z });
+    }
+    dijkstra();
 }
-
-
-
-
-

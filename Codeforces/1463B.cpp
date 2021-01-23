@@ -56,16 +56,41 @@ int main()
     //t=1;
     while( t-- )
     {
-        ll m,n,b,c,d,i,j,k,x,y,z,l,r, p, q;
+         ll m,n,b,c,d,i,j,k,x,y,z,l,r, p, q;
         string s,s1, s2, s3, s4;
 
-        ll cnt=0,cn=0,ans=0,sum=0 ;
+        ll cnt=0,cn=0,ans=0,sum=0 , ev=0, od=0 ;
         cin>>n;
-        cin>>s;
 
         ll a[n];
 
-       pfl(ans);
+        fr(i,n)cin>>a[i] ;
+
+        fr(i , n)
+        {
+            if(i%2==0)ev+=a[i];
+            else od+=a[i];
+        }
+
+        if(ev>od)
+        {
+            fr(i , n)
+            {
+                if(i%2==0)pf(a[i]);
+                else cout<<1<<" ";
+            }
+        }
+        else
+        {
+            fr(i , n)
+            {
+                if(i%2)pf(a[i]);
+                else cout<<1<<" ";
+            }
+        }
+        pn;
+
+
     }
 
 return 0;

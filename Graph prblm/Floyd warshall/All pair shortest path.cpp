@@ -84,7 +84,6 @@ int  main()
             cin>>u>>v;
             if(dist[u][v]==inf)  cout<<-1<<endl;
             else cout<<dist[u][v]<<endl;
-
         }
     }
 }

@@ -54,13 +54,10 @@ ll solve(ll st, ll en)
     for(ll mid=st ; mid<en ; mid++)
     {
         ll left=solve(st, mid);
+        ll left_to_right=  row[st]*col[mid]*col[en];
         ll right=solve(mid+1 , en);
 
-
-        ll left_to_right=  row[st]*col[mid]*col[en];
-
         ll total=left+left_to_right+right;
-
         ans=min(ans , total);
     }
 
@@ -92,6 +89,21 @@ int main()
 
 return 0;
 }
+
+/*
+ll mcm(ll a[], ll i , ll j)
+{
+    if(i==j)return 0;
+    if(dp[i][j] !=-1)return dp[i][j];
+
+    dp[i][j]=inf;
+    for(ll k=i; k<j; k++)
+    {
+        dp[i][j]=min(dp[i][j] , mcm(a, i , k)+ mcm(a,  k+1 , j )+ a[i-1]*a[k]*a[j]);
+    }
+    return dp[i][j];
+}
+*/
 
 /// **************************Before submit****************************
 

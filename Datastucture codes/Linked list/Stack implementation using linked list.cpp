@@ -18,7 +18,7 @@ void push(ll data)
     newnode->data=data;
     newnode->next =top;
 
-    top=newnode;  //newnode is now in top
+    top=newnode;  //new node is now in top
 }
 
 bool isempty()
@@ -57,8 +57,7 @@ void display()
         while(tmp!=NULL  )
         {
             cout<<tmp->data<<" ";
-            tmp=tmp->
-            next;
+            tmp=tmp->next;
         }
     }
 }

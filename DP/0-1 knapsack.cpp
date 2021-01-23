@@ -37,7 +37,7 @@ ll knapsacp(ll n, ll weight, ll w[], ll c[])
     {
         fr(j, weight+1)
         {
-            if(i==0 || weight==0)
+            if(i==0 || j==0)
                 k[i][j]=0;
 
             else if(w[i-1]<=j)
@@ -100,12 +100,19 @@ int main()
 
 */
 /*
-int dp[10010];
-int a[10100],w[10010];
-for(int i=1; i<=n; i++)
-        for(int j=w[i]; j<=m; j++)
-            dp[j]=max(dp[j],dp[j-w[i]]+a[i]);
-    printf("%d\n",dp[m]);
+ll knapsack(ll n , ll w, ll val[] , ll wt[])
+{
+    ll dp[n+1][w+1];
+    mem(dp , 0);
+    fr1(i , n)
+    {
+        for(ll j=wt[i-1]; j<= w ; j++)
+        {
+             if(wt[i-1] <=j )dp[i][j]=max(dp[i-1][j]  ,  val[i-1]+dp[i-1][j- wt[i-1] ] );
+        }
+    }
+    return dp[n][w];
+}
 */
 /*
 3

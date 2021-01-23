@@ -108,4 +108,22 @@ int main()
 
 return 0;
 }
+/*
+ ll st[n+1][tot+1];
+
+       mem(st, 0);
+       fr(i , n+1)st[i][0]=1;
+
+
+       fr1(i , n)
+       {
+           for(j=a[i-1] ; j<=tot; j++)
+           {
+               st[i][j]=max(st[i-1][j] ,  st[i-1][j- a[i-1] ] );
+           }
+       }
+
+       cnt=st[n][tot];
+
+*/
 
