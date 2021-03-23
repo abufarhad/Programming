@@ -1,0 +1,123 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace Practice
+{
+    class Program
+    {
+
+        static string solve(string s, int win_s )
+        {
+            var wrd=new List<string>();
+            string s1="";
+            
+            int sz=s.Length;
+
+            string output="";
+            int cnt=0;
+
+            foreach(var i in s)
+            {
+              if(i==',' || i=='.')
+              {  
+                if(s1.Length>0 ){ wrd.Add(s1); s1=""; }
+                wrd.Add(i.ToString() ); continue;
+              }
+
+              if(i==' ')
+              {
+                if(s1.Length>0 )   wrd.Add(s1);
+                s1="";
+              }
+              else s1+=i;
+            }
+            if(s1.Length>0 ){ wrd.Add(s1); s1=""; }
+
+
+
+            //foreach(var i in wrd)Console.WriteLine(i);
+
+
+            string line="";
+            for(int i=0; i<wrd.Count; i++)
+            {
+              line=wrd[i];
+              if(line.Length>win_s)return "-1";
+
+              int j=i+1;
+              while(j<wrd.Count )
+              {
+                string tmp=wrd[j];
+                if(tmp=="." || tmp==",")
+                {
+                    if(line.Length+tmp.Length<=win_s  )
+                    {
+                       line+=tmp;
+                       j++; 
+                    }
+                    else break; 
+                }
+                else
+                {
+                    if(line.Length+tmp.Length+1<=win_s  )
+                    {
+                       line+=" ";
+                       line+=tmp;
+                       j++; 
+                    }
+                    else break;
+                }
+              }
+
+              i=j-1;
+
+              output += new string(' ' , win_s-line.Length );
+              output+=line+"\n";
+
+            }
+
+            
+           
+            return output;
+
+            //Console.WriteLine("YES");
+            //Console.WriteLine(output);
+        }
+
+
+
+        static void Main(string[] args)
+        {
+            //String path=@"E:\Desktop\inpt.txt";
+            //String B= File.ReadAllText(path);
+
+            //int t=Convert.ToInt32( Console.In.ReadLine());
+            int t=Convert.ToInt32(Console.In.ReadLine() ); 
+            int cs=1;
+
+            while(t>0)
+            {
+               int ws=Convert.ToInt32( Console.In.ReadLine());
+               string s=Console.ReadLine();
+
+               //Console.WriteLine(s);
+
+               Console.Write("Case {0}: ", cs );
+               string ans=solve(s, ws );
+
+
+               if(ans=="-1")Console.WriteLine("NO");
+               else {Console.WriteLine("YES");Console.Write(ans);}
+
+               cs++;
+               t--;
+            }
+            
+            //Console.ReadKey();
+        }
+    }
+}

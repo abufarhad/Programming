@@ -22,8 +22,8 @@ using namespace std;
 
 #define pb                  push_back
 #define debug               cout<<"I am here"<<endl;
-#define pno                 cout<<"NO"<<endl
-#define pys                 cout<<"YES"<<endl
+#define pno                 cout<<"No"<<endl
+#define pys                 cout<<"Yes"<<endl
 #define tcas(i,t)           for(ll i=1;i<=t;i++)
 #define all(x) 	            (x).begin(), (x).end()
 #define allrev(x)           (x).rbegin(),(x).rend()
@@ -56,34 +56,57 @@ int main()
     t=1;
     tcas(cs, t)
     {
-        ll m,n,c,d,i,j,k,x,y,z,l,r, p, q;
-        string s,s1, s2, s3, s4;
+        int  m,n,c,d,i,j,k,x=0,y,z,l,r, p, q;
 
-        ll cnt=0,cn=0,ans=0,sum=0 , mn=inf;
-        cin>>n>>s>>s1;
+        ll cnt=0, cn=0, ans=0;
+        string a, b;
 
-        x=l(s) , y=l(s1);
+        cin>>a>>b>>k;
 
-        vector<ll>v;
-        for(i=0; i<x; )
+        fr(i,  min(a.size(), b.size() ) )
         {
-            if(i+1<x and  s[i] == s1[i+1]  and s[i+1]==s1[i])ans++, i+=2;
+            if(a[i]==b[i] )  cnt++;
             else
             {
-                if(s[i]!=s1[i])ans++;
-                i++;
+                x=i;
+                break;
             }
         }
 
+       //ll baki=max(a.size(), b.size() )-cnt;
 
-        cout<<ans;pn;
+        if(a.size()<=b.size() )
+        {
+            ll dif=b.size() -cnt;
+            if(cnt==a.size() )
+            {
+                if(k>= dif)pys;
+                else pno;
+            }
+            else
+            {
+                ll ex=a.size()-cnt;
+                ll tot= ex+dif;
+
+                if(k>= tot)pys;
+                else pno;
+            }
+        }
+        else
+        {
+            ll ex=a.size()-cnt;
+            if(cnt==b.size())
+            {
+                if(k>= ex)pys;
+                else pno;
+            }
+            else
+            {
+                ex+=b.size()-cnt;
+                if(k>= ex)pys;
+                else pno;
+            }
+        }
     }
-
-return 0;
+    return 0;
 }
-
-/// **************************Before submit****************************
-
-///    **** Check all base case output  and printing " YES or NO " ***
-///    *check for integer overflow,array bounds
-///    *check for n=1

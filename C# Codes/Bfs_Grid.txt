@@ -1,0 +1,59 @@
+public class Solution 
+{
+    public int ShortestPathBinaryMatrix(int[][] grid)
+    {
+        int  n=grid.Length, m=grid[0].Length;
+        
+        if(grid[0][0] !=0 || grid[n-1][m-1] !=0  )return -1;
+
+        
+        
+        var dir=new (int , int )[]{(0, 1) , (1, 0), (0, -1), ( -1, 0)
+                                   
+                                   , (1, 1), (-1, 1), (1, -1), (-1, -1)};
+                                   
+
+        bool [,] vis=new bool[n, m];
+        
+        var q= new Queue<(int , int )>();
+        
+        
+        
+        vis[0, 0]= true;
+        
+        q.Enqueue((0 , 0) );
+
+        int cnt=0;
+        
+        while(q.Count>0)
+        {
+            int sz=q.Count;
+            
+            cnt++;
+            
+            for(int i=0; i<sz; i++)
+            {
+                var fnt=q.Dequeue();
+                
+                if(fnt.Item1==n-1 && fnt.Item2==m-1)return cnt;
+                
+                foreach(var f in dir )
+                {
+                    int x=fnt.Item1+ f.Item1;
+                    int y=fnt.Item2+ f.Item2;
+                    
+                    
+                    if(x>=0 && y>=0 && x<n && y<m && !vis[x, y] && grid[x][y]==0 )
+                    {
+                        q.Enqueue((x, y));
+                        vis[x, y]= true;
+                    }
+                    
+                }
+            }
+        }
+        
+        return -1;
+             
+    }
+}

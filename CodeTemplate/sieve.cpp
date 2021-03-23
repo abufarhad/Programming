@@ -7,13 +7,12 @@ using namespace std;
 #define pfl(x)              printf("%lld\n",x)
 #define endl 	            "\n"
 #define pb                  push_back
-#define MAX                  100000000
+#define MAX                  1000000
 
 vector<ll> primes;
-
+bool isPrime[MAX];
 void sieve()
 {
-    bool isPrime[MAX];
     for (ll i = 0; i < MAX; ++i) isPrime[i] = true;
 
     for (ll i = 3; i * i <= MAX; i += 2)
@@ -33,16 +32,19 @@ void sieve()
 
 int main()
 {
-    sieve();
+    //sieve();
     ll m,n,t,b,c,d,i,j,k,x,y,z,l,q,r;
     fr(i, 20)cout<<primes[i]<<" ";
 
-    cin>>t;
 
-    while(t--)
-    {
         cin>>n;
+       for(int j=2; j*j<=n; j++)
+        {
+          if(n%j==0 ){cnt=1;break;}
+        }
+
+
         //cout<<p[n]<<endl;
-    }
+
     return 0;
 }

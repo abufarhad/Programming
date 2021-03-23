@@ -1,0 +1,121 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void check(string s, int n)
+        {
+           s=s.Trim();
+           
+           int tot_width=s.Length;
+           int cnt=1;
+
+           for(int i=0; i<tot_width; i++)
+           {
+            if(s[i]==' ')cnt++;
+           }
+           
+           //Console.WriteLine(s);
+           
+           if(cnt==1)
+           { 
+                int ex=n-s.Length;
+                for(int i=0; i<ex; i++)s+=" ";
+
+                Console.WriteLine( s );
+                return ;
+           } 
+
+           int faka_jayga=cnt-1;
+           int tot_spc=n-tot_width;
+        
+           int lagbe=0,  extra=0;
+
+           
+           lagbe=tot_spc/faka_jayga;  extra=tot_spc%faka_jayga;
+             
+           string ans="";
+
+           int  tmp=lagbe;
+                 
+           
+           for(int i=0; i<s.Length; i++)
+           {
+                ans+=s[i];
+
+                if(s[i]==' ')
+                {
+                    if(extra>0){ tmp=lagbe+1; extra--;}
+                    else tmp=lagbe;
+                        
+
+                    for(int j=0; j<tmp ; j++)ans+=" ";
+                }
+           }
+          
+           //return ans;
+           Console.WriteLine(ans);
+        }
+             
+
+        static void Left_allign(string s , int n )
+        {
+            List<string> wrd= new List<string>();
+
+            string s1="";
+            foreach(var i in s )
+            {
+                if(i==' '){
+                    wrd.Add(s1);
+                    s1="";
+                }
+                else  s1+=i;
+            }
+
+            s1=s1.Trim();
+            wrd.Add(s1);
+
+            string line="";
+
+            foreach(var i in wrd )
+            {
+                if(i.Length+line.Length+1>n)
+                {
+                    check(line , n );
+                    line=i;
+                }
+                else
+                {
+                  if(line.Length!=0)line+=" ";
+                  line+=i;
+                }
+            }
+
+
+           // int sp=;
+
+            //for(int j=0; j<(n-line.Length)/2; j++)Console.Write(" ");
+            check(line , n );
+            //Console.WriteLine(new_str);
+        }
+
+
+        static void Main(string[] args)
+        {
+            String path=@"E:\Desktop\inpt.txt";
+            String txt= File.ReadAllText(path);
+
+            int n=Convert.ToInt32(Console.In.ReadLine() ); 
+
+            Left_allign( txt , n );
+            
+            Console.ReadKey();
+        }
+    }
+}

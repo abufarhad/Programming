@@ -39,7 +39,6 @@ void update(ll nd, ll l, ll r, ll x, ll  newvalue)
     update(left, l, mid, x,newvalue);
     update(right, mid+1, r, x,newvalue);
     tree[nd]=tree[left]+tree[right];
-
 }
 
 ll query(ll nd, ll l, ll r, ll x, ll y)

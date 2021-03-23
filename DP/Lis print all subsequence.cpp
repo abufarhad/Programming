@@ -60,6 +60,7 @@ int main()
         ll a[n+1],  dp[n+5];
 
         //mem(dp, 1);
+
         fr(i , n)cin>>a[i],dp[i]=1 ;
         dp[n+1]=1;
 

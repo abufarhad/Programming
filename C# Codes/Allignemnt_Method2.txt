@@ -1,0 +1,31 @@
+static void left_allign(string s, int win_s )
+        {
+            int sz=s.Length;
+            for(int i=0; i<sz; )
+            {
+              int j=i , tmp_ws=win_s;
+              while(tmp_ws>0 && j<sz )
+              {
+                tmp_ws--;
+                j++;
+              }
+
+
+              if(j !=sz && s[j]!=' ' )
+              {
+                  while(s[j]!=' ' )j--;
+              }
+
+              string s1="";
+              for(int k=i; k<j; k++)s1+=s[k];
+
+              int ex_sp=win_s-s1.Length;
+              for(int ii=0; ii<ex_sp; ii++)Console.Write(" ");
+
+              Console.WriteLine(s1);
+              //Console.WriteLine();
+
+              i=j+1;
+
+            }
+        }

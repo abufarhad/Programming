@@ -1,0 +1,140 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Left_allign(string s , int n )
+        {
+            var wrd= new List<string>();
+
+            string s1="";
+            foreach(var i in s )
+            {
+                if(i==' '){
+                    wrd.Add(s1);
+                    s1="";
+                
+                }
+                else{
+                s1+=i;
+                }
+            }
+
+            s1=s1.Trim();
+            wrd.Add(s1);
+
+            string line="";
+
+            foreach(var i in wrd ){
+            
+                if(i.Length+line.Length+1>n){
+                
+                 
+
+                    for(int j=0; j<(n-line.Length)/2; j++)Console.Write(" ");
+                    Console.WriteLine(line);
+                    line=i;
+                }
+                else{
+                 if(line.Length!=0)line+=" ";
+                 line+=i;
+                }
+            }
+
+
+           
+
+            for(int j=0; j<(n-line.Length)/2; j++)Console.Write(" ");
+            Console.WriteLine(line);
+
+        }
+
+
+        static void Main(string[] args)
+        {
+            String path=@"E:\Desktop\inpt.txt";
+            String txt= File.ReadAllText(path);
+
+            int n=Convert.ToInt32(Console.In.ReadLine() ); 
+
+            Left_allign( txt , n );
+            
+            Console.ReadKey();
+        }
+    }
+}
+==============================
+       static void check(string s, int n)
+       {
+           int len=s.Length;
+           int num_of_word=1;
+
+           foreach(var i in s )
+           {
+              if(i==' ')num_of_word++;
+           }
+
+           if(num_of_word==1){ Console.WriteLine(s); return; } 
+
+           
+           int faka_jayga=num_of_word-1;
+
+           int tot_spc= (n-len)+faka_jayga;
+
+           int lagbe=tot_spc/faka_jayga;
+
+           //lagbe++;
+           string s2="", s3="";
+
+
+           int ok=0;
+           int extra=tot_spc%faka_jayga;
+           if( extra!=0 )  ok=1;
+
+           for(int i=0; i<s.Length-1; i++)
+           {
+             if(s[i]==' ' )
+             {
+                for(int j=0; j<lagbe; j++)s2+=" ";
+             }
+             else s2+=s[i];
+           }
+
+           //
+           if(ok==1)
+           {
+              //Console.WriteLine("{0} , {1} ", s2,  s2[s2.Length-1] );
+              int pos=-1;
+             
+              for(int i=s2.Length-5 ;i>=0 ; i--)
+              {
+                   if( s2[i]==' ' )
+                   {
+                        pos=i;
+                        break;
+                   }     
+              }
+              
+             // Console.WriteLine("{0} , {1}",pos,   extra);
+
+               
+              for(int i=0;i<s2.Length; i++)
+              {
+                    if(i==pos)
+                    {
+                      s3+=s2[i];
+                      for(int j=0; j<extra; j++)s3+=" ";
+                    }
+                    else s3+=s2[i];
+              }
+              
+              Console.WriteLine(s3);
+           }
+           else Console.WriteLine(s2);
+        }

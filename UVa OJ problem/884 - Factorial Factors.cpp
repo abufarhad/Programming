@@ -32,15 +32,14 @@ void pre_calc()
         ans[i]=ans[i-1];
 
         ll n=i, j=0;
-        while( prime[n])    ///untill n not a prime
+        while( prime[n])    ///until n not a prime
         {
             if(n%p[j]==0)
             {
                 ans[i]++;
                 n/=p[j];
             }
-            else
-                j++;
+            else     j++;
         }
         if( !prime[n])  ans[i]++;  ///if prime then increase size
         //cout<<i<<" "<<ans[i]<<endl;

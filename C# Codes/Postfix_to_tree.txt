@@ -1,0 +1,117 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        class Node
+        {
+            public char data;
+            public Node left, right;
+ 
+            public Node(char data)
+            {
+                this.data = data;
+                this.left = this.right = null;
+            }
+ 
+            public Node(char data, Node left, Node right)
+            {
+                this.data = data;
+                this.left = left;
+                this.right = right;
+            }
+        }
+
+        static bool isoperator(char c)
+        {
+            return (c == '+' || c == '-' || c == '×' || c == '/' || c == '^');
+        }
+
+        static Node construct_postfix(string s )
+        {
+          var st= new Stack<Node>();
+
+          foreach(var i in s )
+          {
+            if(isoperator( i ) )
+            {
+                Node x=st.Pop();
+                Node y=st.Pop();
+
+                Node new_nd=new Node(i , y, x);
+
+                st.Push(new_nd);       
+            }
+            else st.Push(new Node(i) );
+
+          }
+
+          return st.Peek();
+        }
+
+        static void print_postorder(Node root )
+        {
+          if(root==null)return;
+          print_postorder(root.left);
+          print_postorder(root.right);
+          
+          Console.Write(root.data + " ");
+        }
+
+        static void print_preorder(Node root )
+        {
+          if(root==null)return;
+          Console.Write(root.data + " ");
+
+          print_preorder(root.left);
+          print_preorder(root.right);
+        }
+
+        static void print_inorder(Node root )
+        {
+          if(root==null)return;
+
+          if (isoperator(root.data))  Console.Write("(");
+        
+          print_inorder(root.left);
+          Console.Write(root.data );
+          print_inorder(root.right);
+
+          if (isoperator(root.data))  Console.Write(")");
+        }
+
+
+        static void Main(string[] args)
+        {
+            //String path=@"E:\Desktop\inpt.txt";
+            //String B= File.ReadAllText(path);
+
+            //int t=Convert.ToInt32( Console.In.ReadLine());
+            
+            string post_exp="ab+cde+××";
+            Node root= construct_postfix(post_exp );
+
+
+            Console.WriteLine("Print Inorder expression ");
+            print_inorder(root);
+
+
+
+            Console.WriteLine("\nPrint preorder expression ");
+            print_preorder(root);
+
+
+            Console.WriteLine("\nPrint postorder expression ");
+            print_postorder(root);
+
+
+            Console.ReadKey();
+        }
+    }
+}

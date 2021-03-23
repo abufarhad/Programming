@@ -1,0 +1,23 @@
+        static void solve_instead_2D_vector()
+        {
+            var mp= new Dictionary<int , List<int> >();
+
+            if (!mp.ContainsKey(3))  mp.Add(3, new List<int>());
+            if (!mp.ContainsKey(5))  mp.Add(5, new List<int>());
+
+            mp[3].Add(1);
+            mp[3].Add(3);
+
+            mp[5].Add(1);
+            mp[5].Add(3);
+
+           //Console.WriteLine(mp[3][1]);
+
+            foreach(var kvp in mp)
+            {
+              foreach(var value in kvp.Value)
+              {
+                 Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, value);
+              }
+            }
+        }

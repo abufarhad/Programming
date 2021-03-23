@@ -75,6 +75,7 @@ ll solve( ll S[], ll m, ll n )
     return table[n];
 }
 
+
 int main()
 {
     ll t;

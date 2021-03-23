@@ -1,0 +1,2 @@
+15
+This small code sample will format a paragraph which is passed to the justify text function to fill the  selected page with and insert breaks where necessary. It is working like the justify formatting in text processors.

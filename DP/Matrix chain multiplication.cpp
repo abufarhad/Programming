@@ -70,20 +70,20 @@ int main()
     cin>>t;
     tcas(cs, t)
     {
-    ll m,n,b,c,d,i,j,k,x,y,z,l,q,r;
-    string s,s1, s2, s3, s4;
+        ll m,n,b,c,d,i,j,k,x,y,z,l,q,r;
+        string s,s1, s2, s3, s4;
 
-    ll cnt=0,cn=0,ans=0,sum=0 ;
-    cin>>n;
+        ll cnt=0,cn=0,ans=0,sum=0 ;
+        cin>>n;
 
-    fr(i,n)cin>>row[i]>>col[i];
-    ans=solve(0, n-1);
+        fr(i,n)cin>>row[i]>>col[i];
+        ans=solve(0, n-1);
 
-    cout<<ans;pn;
+        cout<<ans;pn;
 
-    mem(dp, 0);
-    mem(row, 0);
-    mem(col, 0);
+        mem(dp, 0);
+        mem(row, 0);
+        mem(col, 0);
 
     }
 
